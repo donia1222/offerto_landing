@@ -4,6 +4,7 @@ import { StatsBar } from "@/components/landing/stats-bar"
 import { FeaturesSection } from "@/components/landing/features-section"
 import { AppScreenshotsSection } from "@/components/landing/app-screenshots-section"
 import { StoresSection } from "@/components/landing/stores-section"
+import { ProspekteSection } from "@/components/landing/prospekte-section"
 import { CategoriesSection } from "@/components/landing/categories-section"
 import { HowItWorksSection } from "@/components/landing/how-it-works-section"
 import { CTASection } from "@/components/landing/cta-section"
@@ -19,6 +20,7 @@ export default function LandingPage() {
       <FeaturesSection />
       <AppScreenshotsSection />
       <StoresSection />
+      <ProspekteSection />
       <CategoriesSection />
       <HowItWorksSection />
       <FAQSection />
