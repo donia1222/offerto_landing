@@ -57,10 +57,10 @@ export function Navigation() {
           {/* Mobile hamburger */}
           <button
             onClick={() => setOpen(true)}
-            className="md:hidden p-2 rounded-lg hover:bg-secondary transition-colors"
+            className="md:hidden p-2.5 rounded-full bg-primary hover:bg-primary/90 transition-colors"
             aria-label="Menü öffnen"
           >
-            <Menu className="w-6 h-6 text-foreground" />
+            <Menu className="w-5 h-5 text-white" />
           </button>
         </div>
       </nav>
