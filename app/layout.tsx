@@ -15,8 +15,41 @@ const plusJakarta = Plus_Jakarta_Sans({
 
 export const metadata: Metadata = {
   title: 'Offerto PROFI — Alle Angebote. Eine App.',
-  description: 'Offerto PROFI aggregiert die wöchentlichen Aktionen von Aligro, TopCC und Transgourmet in einer einzigen schnellen App.',
-  generator: 'v0.app',
+  description: 'Offerto PROFI aggregiert die wöchentlichen Aktionen von Aligro, TopCC und Transgourmet in einer einzigen schnellen App. Hunderte Angebote, immer aktuell — für Gastronomie-Profis.',
+  keywords: ['Offerto PROFI', 'Grosshandel', 'Aligro', 'TopCC', 'Transgourmet', 'Angebote', 'Gastronomie', 'Schweiz', 'Cash and Carry', 'App'],
+  authors: [{ name: 'Offerto PROFI', url: 'https://offerto-profi.ch' }],
+  creator: 'Offerto PROFI',
+  publisher: 'Offerto PROFI',
+  metadataBase: new URL('https://offerto-profi.ch'),
+  alternates: {
+    canonical: '/',
+  },
+  openGraph: {
+    type: 'website',
+    url: 'https://offerto-profi.ch',
+    title: 'Offerto PROFI — Alle Angebote. Eine App.',
+    description: 'Alle Wochenangebote von Aligro, TopCC und Transgourmet auf einen Blick. Kostenlos. Kein Abo. Keine Werbung.',
+    siteName: 'Offerto PROFI',
+    locale: 'de_CH',
+    images: [
+      {
+        url: '/icon.png',
+        width: 512,
+        height: 512,
+        alt: 'Offerto PROFI',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary',
+    title: 'Offerto PROFI — Alle Angebote. Eine App.',
+    description: 'Alle Wochenangebote von Aligro, TopCC und Transgourmet auf einen Blick.',
+    images: ['/icon.png'],
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
   icons: {
     icon: [
       {
