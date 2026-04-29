@@ -20,7 +20,6 @@ export default function LandingPage() {
       <FeaturesSection />
       <AppScreenshotsSection />
       <StoresSection />
-      <ProspekteSection />
       <CategoriesSection />
       <HowItWorksSection />
       <FAQSection />
