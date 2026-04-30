@@ -44,12 +44,6 @@ export function Navigation() {
                 {link.label}
               </button>
             ))}
-            <Link
-              href="/praesentation"
-              className="px-4 py-2 text-base font-medium text-muted-foreground hover:text-foreground rounded-lg hover:bg-secondary transition-colors"
-            >
-              Präsentation
-            </Link>
           </div>
 
           {/* Desktop CTA */}
@@ -111,14 +105,6 @@ export function Navigation() {
               {link.label}
             </button>
           ))}
-            <Link
-              href="/praesentation"
-              onClick={() => setOpen(false)}
-              className="text-left px-4 py-3 text-base font-medium text-foreground hover:text-primary hover:bg-primary/5 rounded-xl transition-colors"
-            >
-              Präsentation
-            </Link>
-
           <div className="mt-6 px-4 flex flex-col gap-3">
             <Link href="#cta" onClick={() => setOpen(false)}>
               <img src="/shops/apple.png" alt="App Store" className="h-9 w-auto rounded-[8px] hover:opacity-80 transition-opacity" />

@@ -24,6 +24,10 @@ export function Footer() {
             <Link href="/kontakt" className="text-xs text-muted-foreground hover:text-foreground transition-colors">
               Kontakt
             </Link>
+            <div className="w-px h-3 bg-border" />
+            <Link href="/" className="text-xs text-muted-foreground hover:text-foreground transition-colors">
+              Präsentation für Unternehmen
+            </Link>
           </div>
         </div>
 
