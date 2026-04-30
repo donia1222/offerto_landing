@@ -1,5 +1,6 @@
 import Link from "next/link"
-import { ArrowLeft, Check, Smartphone, Server, Database, Bell, Package, Layers, Zap, Globe } from "lucide-react"
+import { ArrowLeft, Check, Smartphone, Server, Database, Bell, Package, Layers, Zap, Globe, Mail } from "lucide-react"
+import { SectionNav } from "./section-nav"
 
 const galleryImages = [
   {
@@ -95,13 +96,16 @@ export default function CapturasPage() {
           </Link>
           <div className="flex items-center gap-3">
             <img src="/icon.png" alt="Offerto PROFI" className="w-9 h-9 rounded-[8px] shadow-sm" />
-            <div className="text-center">
-              <h2 className="font-bold text-lg text-foreground leading-tight whitespace-nowrap">App-Screenshots</h2>
-              <p className="text-xs text-muted-foreground whitespace-nowrap">Alle Funktionen im Überblick</p>
-            </div>
+            <h2 className="font-bold text-lg leading-tight whitespace-nowrap">
+              <span className="text-foreground">Offerto</span>
+              <span className="text-red-500 text-xs font-bold tracking-widest ml-1">PROFI</span>
+              <span className="text-foreground"> — Präsentation</span>
+            </h2>
           </div>
         </div>
       </div>
+
+      <SectionNav />
 
       {/* Hero */}
       <div className="bg-gradient-to-b from-primary/10 to-background border-b border-border/40 px-6 py-16 md:py-24 text-center">
@@ -127,7 +131,7 @@ export default function CapturasPage() {
       </div>
 
       {/* Título sección */}
-      <div className="max-w-4xl mx-auto w-full px-6 pt-14 pb-2 text-center">
+      <div id="screenshots" className="max-w-4xl mx-auto w-full px-6 pt-14 pb-2 text-center">
         <h2 className="font-bold text-3xl md:text-4xl text-foreground">Impressionen</h2>
         <p className="text-muted-foreground mt-2 text-base">Ein Blick in die App — Funktion für Funktion</p>
       </div>
@@ -159,7 +163,7 @@ export default function CapturasPage() {
       </div>
 
       {/* Tech Stack Section */}
-      <div className="border-t border-border/40 bg-card/50 px-6 py-16">
+      <div id="technologie" className="border-t border-border/40 bg-card/50 px-6 py-16">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-10">
             <h2 className="font-bold text-2xl md:text-3xl text-foreground mb-2">Technologie & Aufbau</h2>
@@ -263,6 +267,94 @@ export default function CapturasPage() {
         </div>
       </div>
 
+      {/* Geschäftsmodell Section */}
+      <div id="geschaeftsmodell" className="border-t border-border/40 px-6 py-16">
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-10">
+            <h2 className="font-bold text-2xl md:text-3xl text-foreground mb-2">Geschäftsmodell & Projektstand</h2>
+            <p className="text-muted-foreground text-sm md:text-base">Transparenz über Ziele, Bedingungen und Vorteile</p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+
+            {/* Aktueller Stand */}
+            <div className="rounded-2xl border border-blue-100 dark:border-blue-900/50 bg-blue-50/60 dark:bg-blue-950/20 p-6">
+              <div className="text-2xl mb-3">📋</div>
+              <h3 className="font-bold text-foreground text-base mb-2">Aktueller Projektstand</h3>
+              <p className="text-muted-foreground text-sm leading-relaxed">Das Projekt befindet sich in der Entwicklungs- und Präsentationsphase. Derzeit gibt es kein definiertes Geschäftsmodell — das Ziel ist es, das Interesse der Händler zu validieren.</p>
+            </div>
+
+            {/* Bedingung */}
+            <div className="rounded-2xl border border-emerald-100 dark:border-emerald-900/50 bg-emerald-50/60 dark:bg-emerald-950/20 p-6">
+              <div className="text-2xl mb-3">✅</div>
+              <h3 className="font-bold text-foreground text-base mb-2">Bedingung für den Fortschritt</h3>
+              <p className="text-muted-foreground text-sm leading-relaxed">Das Projekt schreitet nur voran, wenn <strong className="text-foreground">mindestens 2 der 3 Händler</strong> zustimmen. In diesem Fall wird der nächste Schritt gemeinsam definiert.</p>
+            </div>
+
+            {/* Alternativer Fall */}
+            <div className="rounded-2xl border border-rose-100 dark:border-rose-900/50 bg-rose-50/60 dark:bg-rose-950/20 p-6">
+              <div className="text-2xl mb-3">⚠️</div>
+              <h3 className="font-bold text-foreground text-base mb-2">Alternativer Fall</h3>
+              <p className="text-muted-foreground text-sm leading-relaxed">Wenn nur 1 Händler teilnimmt, wird das Projekt gestoppt. Die App verliert ihren Hauptwert ohne einen echten Angebotsvergleich zwischen mehreren Anbietern.</p>
+            </div>
+
+            {/* Kosten */}
+            <div className="rounded-2xl border border-violet-100 dark:border-violet-900/50 bg-violet-50/60 dark:bg-violet-950/20 p-6">
+              <div className="text-2xl mb-3">💰</div>
+              <h3 className="font-bold text-foreground text-base mb-2">Kosten & Beteiligung</h3>
+              <p className="text-muted-foreground text-sm leading-relaxed">Die Integration verursacht <strong className="text-foreground">keine Anfangskosten</strong> für die Händler. Entwicklung und Launch werden vollständig von meiner Seite getragen.</p>
+            </div>
+
+            {/* Zukünftiges Modell */}
+            <div className="rounded-2xl border border-amber-100 dark:border-amber-900/50 bg-amber-50/60 dark:bg-amber-950/20 p-6">
+              <div className="text-2xl mb-3">🔮</div>
+              <h3 className="font-bold text-foreground text-base mb-2">Zukünftiges Modell (noch zu definieren)</h3>
+              <p className="text-muted-foreground text-sm leading-relaxed">Werbe-, Infrastruktur- und Wartungskosten können langfristig nicht alleine getragen werden. In einer späteren Phase wird gemeinsam ein nachhaltiges Modell erarbeitet, das alle Parteien begünstigt.</p>
+            </div>
+
+            {/* App-Promotion */}
+            <div className="rounded-2xl border border-cyan-100 dark:border-cyan-900/50 bg-cyan-50/60 dark:bg-cyan-950/20 p-6">
+              <div className="text-2xl mb-3">📣</div>
+              <h3 className="font-bold text-foreground text-base mb-2">App-Promotion</h3>
+              <p className="text-muted-foreground text-sm leading-relaxed mb-3">Die App wird aktiv beworben auf:</p>
+              <div className="flex flex-wrap gap-2">
+                {["Facebook", "YouTube", "TikTok", "Google"].map((p) => (
+                  <span key={p} className="text-xs font-semibold px-3 py-1 rounded-full bg-cyan-100 dark:bg-cyan-900/40 text-cyan-700 dark:text-cyan-300">{p}</span>
+                ))}
+              </div>
+            </div>
+
+            {/* Vorteile */}
+            <div className="md:col-span-2 rounded-2xl border border-teal-100 dark:border-teal-900/50 bg-teal-50/60 dark:bg-teal-950/20 p-6">
+              <div className="text-2xl mb-3">🏆</div>
+              <h3 className="font-bold text-foreground text-base mb-3">Vorteile für die Händler</h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                {[
+                  "Mehr Sichtbarkeit ihrer Angebote",
+                  "Direkte Push-Benachrichtigungen an potenzielle Kunden",
+                  "Markenpräsenz innerhalb der App",
+                  "Indirekte Werbung in digitalen Kampagnen",
+                  "Gewinnung neuer Kunden",
+                ].map((b) => (
+                  <div key={b} className="flex items-center gap-2 text-sm text-muted-foreground">
+                    <Check className="w-4 h-4 text-teal-500 shrink-0" strokeWidth={3} />
+                    {b}
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Fazit */}
+            <div className="md:col-span-2 rounded-2xl border border-border/50 bg-card p-6 text-center">
+              <div className="text-2xl mb-3">🎯</div>
+              <h3 className="font-bold text-foreground text-base mb-2">Fazit</h3>
+              <p className="text-muted-foreground text-sm leading-relaxed max-w-xl mx-auto">Das Projekt schafft eine für alle Seiten vorteilhafte Lösung — mehr Sichtbarkeit für die Händler und einfacherer Zugang zu Angeboten für die Nutzer.</p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
       {/* Footer */}
       <footer className="mt-10 border-t border-border/40 bg-card">
         <div className="max-w-4xl mx-auto px-6 py-12">
@@ -284,13 +376,22 @@ export default function CapturasPage() {
           </div>
           {/* Botón + copyright */}
           <div className="mt-8 flex flex-col items-center gap-3">
-            <Link
-              href="/"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-border/60 hover:bg-muted transition-colors text-sm font-medium text-muted-foreground hover:text-foreground"
-            >
-              <ArrowLeft className="w-4 h-4" />
-              Zur Startseite
-            </Link>
+            <div className="flex flex-col sm:flex-row items-center gap-3">
+              <Link
+                href="/"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-border/60 hover:bg-muted transition-colors text-sm font-medium text-muted-foreground hover:text-foreground"
+              >
+                <ArrowLeft className="w-4 h-4" />
+                Zur Startseite
+              </Link>
+              <a
+                href="mailto:info@lweb.ch"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-primary text-primary-foreground text-sm font-semibold hover:bg-primary/90 transition-colors"
+              >
+                <Mail className="w-4 h-4" />
+                Kontakt — info@lweb.ch
+              </a>
+            </div>
             <div className="text-xs text-muted-foreground/50">© {new Date().getFullYear()} Offerto PROFI</div>
           </div>
         </div>
