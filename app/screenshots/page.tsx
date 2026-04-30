@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import Link from "next/link"
-import { Check, Smartphone, Server, Database, Bell, Package, Layers, Zap, Globe, Mail, X, Download, Share2 } from "lucide-react"
+import { Check, Smartphone, Server, Database, Bell, Package, Layers, Zap, Globe, Mail, X, Printer, Share2 } from "lucide-react"
 import { SectionNav } from "./section-nav"
 import { translations, type Lang } from "./translations"
 
@@ -98,7 +98,7 @@ export default function ScreenshotsPage() {
   const handlePrint = () => window.print()
 
   return (
-    <div className="min-h-screen bg-background flex flex-col">
+    <div id="pdf-content" className="min-h-screen bg-background flex flex-col">
     <style>{`
       @media print {
         body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
@@ -155,11 +155,18 @@ export default function ScreenshotsPage() {
               </button>
             ))}
             <button
+              onClick={handleShare}
+              className="px-4 py-2 rounded-full text-sm font-medium text-violet-600 hover:text-violet-700 hover:bg-violet-50 dark:hover:bg-violet-950/30 transition-colors whitespace-nowrap flex items-center gap-1.5"
+            >
+              <Share2 className="w-3.5 h-3.5" />
+              {copied ? t.navShareCopied : t.navShare}
+            </button>
+            <button
               onClick={handlePrint}
               className="px-4 py-2 rounded-full text-sm font-medium text-emerald-600 hover:text-emerald-700 hover:bg-emerald-50 dark:hover:bg-emerald-950/30 transition-colors whitespace-nowrap flex items-center gap-1.5"
             >
-              <Download className="w-3.5 h-3.5" />
-              PDF
+              <Printer className="w-3.5 h-3.5" />
+              {t.navPdf}
             </button>
           </div>
           {/* Derecha: globo idioma */}
@@ -404,8 +411,8 @@ export default function ScreenshotsPage() {
               onClick={handlePrint}
               className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-emerald-100 dark:bg-emerald-900/40 hover:bg-emerald-200 transition-colors text-sm font-medium text-emerald-700 dark:text-emerald-300"
             >
-              <Download className="w-4 h-4" />
-              Präsentation als PDF
+              <Printer className="w-4 h-4" />
+              Als PDF drucken
             </button>
           </div>
         </div>

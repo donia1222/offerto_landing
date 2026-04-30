@@ -66,6 +66,9 @@ export const translations = {
     navScreenshots: "Screenshots",
     navTech: "Technologie",
     navBiz: "Geschäftsmodell",
+    navShare: "Teilen",
+    navShareCopied: "✓ Kopiert!",
+    navPdf: "Als PDF drucken",
   },
   fr: {
     headerTitle: "Présentation",
@@ -132,6 +135,9 @@ export const translations = {
     navScreenshots: "Screenshots",
     navTech: "Technologie",
     navBiz: "Modèle économique",
+    navShare: "Partager",
+    navShareCopied: "✓ Copié!",
+    navPdf: "Imprimer en PDF",
   },
   it: {
     headerTitle: "Presentazione",
@@ -198,6 +204,9 @@ export const translations = {
     navScreenshots: "Screenshots",
     navTech: "Tecnologia",
     navBiz: "Modello di business",
+    navShare: "Condividi",
+    navShareCopied: "✓ Copiato!",
+    navPdf: "Stampa come PDF",
   },
   en: {
     headerTitle: "Presentation",
@@ -264,5 +273,8 @@ export const translations = {
     navScreenshots: "Screenshots",
     navTech: "Technology",
     navBiz: "Business Model",
+    navShare: "Share",
+    navShareCopied: "✓ Copied!",
+    navPdf: "Print as PDF",
   },
 }
