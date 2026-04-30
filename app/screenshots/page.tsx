@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import Link from "next/link"
-import { ArrowLeft, Check, Smartphone, Server, Database, Bell, Package, Layers, Zap, Globe, Mail, X } from "lucide-react"
+import { Check, Smartphone, Server, Database, Bell, Package, Layers, Zap, Globe, Mail, X, Download, Share2 } from "lucide-react"
 import { SectionNav } from "./section-nav"
 import { translations, type Lang } from "./translations"
 
@@ -81,13 +81,54 @@ const githubIcon = (
 export default function ScreenshotsPage() {
   const [lang, setLang] = useState<Lang>("de")
   const [langOpen, setLangOpen] = useState(false)
+  const [copied, setCopied] = useState(false)
   const t = translations[lang]
+
+  const handleShare = async () => {
+    const url = window.location.href
+    if (navigator.share) {
+      await navigator.share({ title: "Offerto PROFI — Präsentation", url })
+    } else {
+      await navigator.clipboard.writeText(url)
+      setCopied(true)
+      setTimeout(() => setCopied(false), 2000)
+    }
+  }
+
+  const handlePrint = () => window.print()
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
+    <style>{`
+      @media print {
+        body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+        .no-print { display: none !important; }
+        /* flex ignores page-breaks — switch to block so breaks work */
+        .print-grid { display: block !important; }
+        .print-grid > div { break-before: page !important; page-break-before: always !important; }
+        #technologie    { break-before: page !important; page-break-before: always !important; }
+        #geschaeftsmodell { break-before: page !important; page-break-before: always !important; }
+        /* Technologie: reduce spacing to fit 1 page */
+        #technologie .max-w-4xl { padding-top: 0 !important; }
+        #technologie { padding-top: 24px !important; padding-bottom: 24px !important; }
+        #technologie .mb-10 { margin-bottom: 12px !important; }
+        #technologie .mt-8 { margin-top: 12px !important; }
+        #technologie .mt-8 + .mt-8 { margin-top: 10px !important; }
+        #technologie .py-16 { padding-top: 12px !important; padding-bottom: 12px !important; }
+        #technologie .gap-4 { gap: 8px !important; }
+        #technologie .p-5 { padding: 10px !important; }
+        #technologie .px-5 { padding-left: 10px !important; padding-right: 10px !important; }
+        #technologie .py-4 { padding-top: 8px !important; padding-bottom: 8px !important; }
+        #technologie .px-6 { padding-left: 12px !important; padding-right: 12px !important; }
+        #technologie .py-6 { padding-top: 10px !important; padding-bottom: 10px !important; }
+        #technologie .gap-4 { gap: 6px !important; }
+        #technologie .text-sm { font-size: 11px !important; }
+        #technologie .text-base { font-size: 12px !important; }
+      }
+    `}</style>
 
       {/* Header */}
-      <div className="sticky top-0 z-20 bg-background/95 backdrop-blur-md border-b border-border/40">
+      <div className="no-print sticky top-0 z-20 bg-background/95 backdrop-blur-md border-b border-border/40">
         <div className="w-full px-4 py-3 relative flex items-center justify-between">
           {/* Izquierda: logo + título */}
           <div className="flex items-center gap-2.5 shrink-0">
@@ -113,6 +154,13 @@ export default function ScreenshotsPage() {
                 {s.label}
               </button>
             ))}
+            <button
+              onClick={handlePrint}
+              className="px-4 py-2 rounded-full text-sm font-medium text-emerald-600 hover:text-emerald-700 hover:bg-emerald-50 dark:hover:bg-emerald-950/30 transition-colors whitespace-nowrap flex items-center gap-1.5"
+            >
+              <Download className="w-3.5 h-3.5" />
+              PDF
+            </button>
           </div>
           {/* Derecha: globo idioma */}
           <button
@@ -153,9 +201,10 @@ export default function ScreenshotsPage() {
         </div>
       )}
 
-      <div className="md:hidden">
+      <div className="no-print md:hidden">
         <SectionNav lang={lang} t={{ navScreenshots: t.navScreenshots, navTech: t.navTech, navBiz: t.navBiz }} />
       </div>
+
 
       {/* Hero */}
       <div className="bg-gradient-to-b from-primary/10 to-background border-b border-border/40 px-6 py-16 md:py-24 text-center">
@@ -186,11 +235,11 @@ export default function ScreenshotsPage() {
         <p className="text-muted-foreground mt-2 text-base">{t.impressionenSub}</p>
       </div>
 
-      <div className="max-w-4xl mx-auto w-full px-6 py-10 flex flex-col gap-6">
+      <div className="print-grid max-w-4xl mx-auto w-full px-6 py-10 flex flex-col gap-6">
         {galleryFiles.map((file, i) => {
           const screen = t.screenshots[i]
           return (
-            <div key={file} className={`flex flex-col-reverse md:flex-row items-center gap-6 md:gap-10 rounded-3xl px-6 md:px-8 py-8 ${colors[i]} ${i % 2 === 1 ? "md:flex-row-reverse" : ""}`}>
+            <div key={file} style={{ pageBreakBefore: 'always', breakBefore: 'page' }} className={`flex flex-col-reverse md:flex-row items-center gap-6 md:gap-10 rounded-3xl px-6 md:px-8 py-8 ${colors[i]} ${i % 2 === 1 ? "md:flex-row-reverse" : ""}`}>
               <div className="w-[240px] md:w-[320px] shrink-0">
                 <PhoneFrame src={`/captutras_presentacion/${encodeURIComponent(file)}`} alt={screen.label} />
               </div>
@@ -298,7 +347,7 @@ export default function ScreenshotsPage() {
                 "border-cyan-100 dark:border-cyan-900/50 bg-cyan-50/60 dark:bg-cyan-950/20",
               ]
               return (
-                <div key={i} className={`rounded-2xl border p-6 ${blockColors[i]}`}>
+                <div key={i} style={i === 4 ? { pageBreakBefore: 'always', breakBefore: 'page' } : undefined} className={`rounded-2xl border p-6 ${blockColors[i]}`}>
                   <div className="text-2xl mb-3">{b.emoji}</div>
                   <h3 className="font-bold text-foreground text-base mb-2">{b.title}</h3>
                   <p className="text-muted-foreground text-sm leading-relaxed">
@@ -341,11 +390,29 @@ export default function ScreenshotsPage() {
               <p className="text-muted-foreground text-sm leading-relaxed max-w-xl mx-auto">{t.fazitText}</p>
             </div>
           </div>
+
+          {/* Botones compartir / PDF / volver */}
+          <div className="no-print mt-10 flex flex-col sm:flex-row items-center justify-center gap-3">
+            <button
+              onClick={handleShare}
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-violet-100 dark:bg-violet-900/40 hover:bg-violet-200 transition-colors text-sm font-medium text-violet-700 dark:text-violet-300"
+            >
+              <Share2 className="w-4 h-4" />
+              {copied ? "✓ Link kopiert!" : "Präsentation teilen"}
+            </button>
+            <button
+              onClick={handlePrint}
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-emerald-100 dark:bg-emerald-900/40 hover:bg-emerald-200 transition-colors text-sm font-medium text-emerald-700 dark:text-emerald-300"
+            >
+              <Download className="w-4 h-4" />
+              Präsentation als PDF
+            </button>
+          </div>
         </div>
       </div>
 
       {/* Footer */}
-      <footer className="mt-10 border-t border-border/40 bg-card">
+      <footer className="no-print mt-10 border-t border-border/40 bg-card">
         <div className="max-w-4xl mx-auto px-6 py-12">
           <div className="flex flex-col md:flex-row gap-8 md:gap-12 md:items-start">
             <div className="flex flex-col items-center md:items-start gap-3 md:w-56 shrink-0">
@@ -362,11 +429,10 @@ export default function ScreenshotsPage() {
           </div>
           <div className="mt-8 flex flex-col items-center gap-3">
             <div className="flex flex-col sm:flex-row items-center gap-3">
-              <Link href="/" className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-border/60 hover:bg-muted transition-colors text-sm font-medium text-muted-foreground hover:text-foreground">
-                <ArrowLeft className="w-4 h-4" />
-                {t.backBtn}
+              <Link href="/" className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 transition-colors text-sm font-medium text-slate-600 dark:text-slate-300">
+                Landing Page
               </Link>
-              <a href="mailto:info@lweb.ch" className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-primary text-primary-foreground text-sm font-semibold hover:bg-primary/90 transition-colors">
+              <a href="mailto:info@lweb.ch" className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 transition-colors text-sm font-medium text-slate-600 dark:text-slate-300">
                 <Mail className="w-4 h-4" />
                 Kontakt — info@lweb.ch
               </a>
