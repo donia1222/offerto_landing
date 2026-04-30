@@ -77,23 +77,7 @@ export default function CapturasPage() {
 
       {/* Header */}
       <div className="sticky top-0 z-10 bg-background/95 backdrop-blur-md border-b border-border/40">
-        <div className="w-full px-4 py-3 relative flex items-center justify-center">
-          {/* Móvil: solo icono redondo */}
-          <Link
-            href="/"
-            className="absolute left-4 sm:hidden flex items-center justify-center w-10 h-10 rounded-full bg-muted hover:bg-muted/80 transition-colors text-muted-foreground hover:text-foreground"
-            aria-label="Zur Startseite"
-          >
-            <ArrowLeft className="w-5 h-5" />
-          </Link>
-          {/* Desktop: botón con texto */}
-          <Link
-            href="/"
-            className="absolute left-4 hidden sm:inline-flex items-center gap-2 px-4 py-2 rounded-full border border-border/60 hover:bg-muted transition-colors text-sm font-medium text-muted-foreground hover:text-foreground"
-          >
-            <ArrowLeft className="w-4 h-4 shrink-0" />
-            Zur Startseite
-          </Link>
+        <div className="w-full px-4 py-3 flex items-center justify-center">
           <div className="flex items-center gap-3">
             <img src="/icon.png" alt="Offerto PROFI" className="w-9 h-9 rounded-[8px] shadow-sm" />
             <h2 className="font-bold text-lg leading-tight whitespace-nowrap">
@@ -382,7 +366,7 @@ export default function CapturasPage() {
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-border/60 hover:bg-muted transition-colors text-sm font-medium text-muted-foreground hover:text-foreground"
               >
                 <ArrowLeft className="w-4 h-4" />
-                Zur Startseite
+                Zur Landing Page
               </Link>
               <a
                 href="mailto:info@lweb.ch"
