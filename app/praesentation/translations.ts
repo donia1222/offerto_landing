@@ -69,6 +69,7 @@ export const translations = {
     navShare: "Teilen",
     navShareCopied: "✓ Kopiert!",
     navPdf: "Als PDF drucken",
+    footerBack: "Landing Page provisorisch",
   },
   fr: {
     headerTitle: "Présentation",
@@ -138,6 +139,7 @@ export const translations = {
     navShare: "Partager",
     navShareCopied: "✓ Copié!",
     navPdf: "Imprimer en PDF",
+    footerBack: "Landing Page provisoire",
   },
   it: {
     headerTitle: "Presentazione",
@@ -207,6 +209,7 @@ export const translations = {
     navShare: "Condividi",
     navShareCopied: "✓ Copiato!",
     navPdf: "Stampa come PDF",
+    footerBack: "Landing Page provvisoria",
   },
   en: {
     headerTitle: "Presentation",
@@ -276,5 +279,6 @@ export const translations = {
     navShare: "Share",
     navShareCopied: "✓ Copied!",
     navPdf: "Print as PDF",
+    footerBack: "Landing Page provisional",
   },
 }

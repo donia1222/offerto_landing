@@ -437,7 +437,7 @@ export default function ScreenshotsPage() {
           <div className="mt-8 flex flex-col items-center gap-3">
             <div className="flex flex-col sm:flex-row items-center gap-3">
               <Link href="/" className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 transition-colors text-sm font-medium text-slate-600 dark:text-slate-300">
-                Landing Page
+                {t.footerBack}
               </Link>
               <a href="mailto:info@lweb.ch" className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 transition-colors text-sm font-medium text-slate-600 dark:text-slate-300">
                 <Mail className="w-4 h-4" />
