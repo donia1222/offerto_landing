@@ -25,7 +25,7 @@ export function Footer() {
               Kontakt
             </Link>
             <div className="w-px h-3 bg-border" />
-            <Link href="/" className="text-xs text-muted-foreground hover:text-foreground transition-colors">
+            <Link href="/praesentation" className="text-xs text-muted-foreground hover:text-foreground transition-colors">
               Präsentation für Unternehmen
             </Link>
           </div>
