@@ -1,4 +1,6 @@
 import { Badge } from "@/components/ui/badge"
+import Link from "next/link"
+import { Smartphone } from "lucide-react"
 
 const screenshots = [
   {
@@ -29,8 +31,8 @@ function PhoneFrame({ img, alt }: { img: string; alt: string }) {
       <div className="absolute inset-0 bg-primary/10 rounded-[2.5rem] blur-2xl scale-110" />
       <div className="relative bg-slate-900 rounded-[2.5rem] p-[10px] shadow-2xl shadow-slate-900/30 ring-1 ring-white/5">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[4.5rem] h-5 bg-slate-900 rounded-b-2xl z-10" />
-        <div className="relative overflow-hidden rounded-[2rem] aspect-[9/19.5]">
-          <img src={img} alt={alt} className="w-full h-full object-cover" />
+        <div className="relative overflow-hidden rounded-[2rem] aspect-[9/19.5] bg-slate-900">
+          <img src={img} alt={alt} className="w-full h-full object-contain" />
         </div>
         <div className="w-14 h-0.5 bg-white/20 rounded-full mx-auto mt-2" />
       </div>
@@ -71,6 +73,16 @@ export function AppScreenshotsSection() {
               </div>
             </div>
           ))}
+        </div>
+
+        <div className="flex justify-center mt-10">
+          <Link
+            href="/capturas"
+            className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-full bg-primary text-primary-foreground font-semibold text-sm shadow-lg hover:bg-primary/90 active:scale-95 transition-all"
+          >
+            <Smartphone className="w-4 h-4" />
+            Alle App-Screenshots ansehen
+          </Link>
         </div>
       </div>
     </section>
