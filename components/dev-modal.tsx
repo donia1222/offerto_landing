@@ -32,16 +32,15 @@ export function DevModal() {
           <X className="w-4 h-4" />
         </button>
 
-        <div className="text-3xl mb-4">🚧</div>
-        <h2 className="font-bold text-foreground text-xl mb-2">Work in Progress</h2>
+<h2 className="font-bold text-foreground text-xl mb-2">Work in Progress</h2>
         <p className="text-muted-foreground text-sm leading-relaxed mb-6">
           Diese Website befindet sich derzeit in der <strong className="text-foreground">Entwicklungsphase</strong>. Inhalte, Design und Funktionen können sich jederzeit ändern. Es handelt sich um eine Vorschau — noch nichts ist definitiv festgelegt.
         </p>
         <button
           onClick={close}
-          className="w-full py-3 rounded-xl bg-primary text-primary-foreground font-semibold text-sm hover:bg-primary/90 transition-colors"
+          className="w-full py-3 rounded-xl bg-emerald-500 text-white font-semibold text-sm hover:bg-emerald-600 transition-colors"
         >
-          Verstanden
+          Eintreten
         </button>
       </div>
     </div>
