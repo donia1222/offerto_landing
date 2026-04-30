@@ -13,15 +13,15 @@ export function Footer() {
 
           {/* Policy links */}
           <div className="flex items-center gap-5">
-            <Link href="#" className="text-xs text-muted-foreground hover:text-foreground transition-colors">
+            <Link href="/datenschutz" className="text-xs text-muted-foreground hover:text-foreground transition-colors">
               Datenschutz
             </Link>
             <div className="w-px h-3 bg-border" />
-            <Link href="#" className="text-xs text-muted-foreground hover:text-foreground transition-colors">
+            <Link href="/impressum" className="text-xs text-muted-foreground hover:text-foreground transition-colors">
               Impressum
             </Link>
             <div className="w-px h-3 bg-border" />
-            <Link href="#" className="text-xs text-muted-foreground hover:text-foreground transition-colors">
+            <Link href="/kontakt" className="text-xs text-muted-foreground hover:text-foreground transition-colors">
               Kontakt
             </Link>
           </div>
