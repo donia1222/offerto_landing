@@ -31,6 +31,7 @@ const faqs = [
   },
 ]
 
+
 function FAQItem({ question, answer }: { question: string; answer: string }) {
   const [open, setOpen] = useState(false)
 
