@@ -125,7 +125,7 @@ export default function CapturasPage() {
         {galleryImages.map((item, i) => (
           <div
             key={item.file}
-            className={`flex flex-col md:flex-row items-center gap-6 md:gap-10 rounded-3xl px-6 md:px-8 py-8 ${colors[i]} ${i % 2 === 1 ? "md:flex-row-reverse" : ""}`}
+            className={`flex flex-col-reverse md:flex-row items-center gap-6 md:gap-10 rounded-3xl px-6 md:px-8 py-8 ${colors[i]} ${i % 2 === 1 ? "md:flex-row-reverse" : ""}`}
           >
             <div className="w-[240px] md:w-[320px] shrink-0">
               <PhoneFrame

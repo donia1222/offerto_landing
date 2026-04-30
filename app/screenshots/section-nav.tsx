@@ -2,7 +2,7 @@
 
 
 const sections = [
-  { label: "App-Screenshots", href: "#screenshots" },
+  { label: "Screenshots", href: "#screenshots" },
   { label: "Technologie", href: "#technologie" },
   { label: "Geschäftsmodell", href: "#geschaeftsmodell" },
 ]
