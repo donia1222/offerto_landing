@@ -48,7 +48,7 @@ export function Navigation() {
               href="/screenshots"
               className="px-4 py-2 text-base font-medium text-muted-foreground hover:text-foreground rounded-lg hover:bg-secondary transition-colors"
             >
-              App-Screenshots
+              Präsentation
             </Link>
           </div>
 
@@ -116,7 +116,7 @@ export function Navigation() {
               onClick={() => setOpen(false)}
               className="text-left px-4 py-3 text-base font-medium text-foreground hover:text-primary hover:bg-primary/5 rounded-xl transition-colors"
             >
-              App-Screenshots
+              Präsentation
             </Link>
 
           <div className="mt-6 px-4 flex flex-col gap-3">

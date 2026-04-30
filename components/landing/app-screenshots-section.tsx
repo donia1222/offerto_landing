@@ -1,6 +1,4 @@
 import { Badge } from "@/components/ui/badge"
-import Link from "next/link"
-import { Smartphone } from "lucide-react"
 
 const screenshots = [
   {
@@ -75,15 +73,6 @@ export function AppScreenshotsSection() {
           ))}
         </div>
 
-        <div className="flex justify-center mt-10">
-          <Link
-            href="/screenshots"
-            className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-full bg-primary text-primary-foreground font-semibold text-sm shadow-lg hover:bg-primary/90 active:scale-95 transition-all"
-          >
-            <Smartphone className="w-4 h-4" />
-            Alle App-Screenshots ansehen
-          </Link>
-        </div>
       </div>
     </section>
   )
