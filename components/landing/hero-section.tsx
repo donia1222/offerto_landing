@@ -13,7 +13,7 @@ const chips = ["Kostenlos", "Kein Abo", "Keine Werbung"]
 
 export function HeroSection() {
   return (
-    <section className="relative min-h-screen pt-24 pb-16 overflow-hidden">
+    <section className="relative min-h-screen pt-32 pb-16 overflow-hidden">
 
       {/* Background image */}
       <div
