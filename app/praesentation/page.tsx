@@ -105,7 +105,6 @@ export default function ScreenshotsPage() {
         .no-print { display: none !important; }
         /* flex ignores page-breaks — switch to block so breaks work */
         .print-grid { display: block !important; }
-        .print-grid > div { break-before: page !important; page-break-before: always !important; }
         #technologie    { break-before: page !important; page-break-before: always !important; }
         #geschaeftsmodell { break-before: page !important; page-break-before: always !important; }
         /* Technologie: reduce spacing to fit 1 page */
@@ -234,6 +233,19 @@ export default function ScreenshotsPage() {
             </span>
           ))}
         </div>
+
+        {/* Beneficios para comerciantes */}
+        <div className="mt-10 max-w-xl mx-auto rounded-2xl border border-teal-200 dark:border-teal-800/50 bg-teal-50/60 dark:bg-teal-950/20 px-6 py-5 text-left">
+          <p className="text-sm font-bold text-teal-700 dark:text-teal-300 uppercase tracking-widest mb-3 text-center">{t.benefitsTitle}</p>
+          <div className="flex flex-col gap-2">
+            {t.benefits.map((b) => (
+              <div key={b} className="flex items-center gap-2 text-sm text-teal-800 dark:text-teal-200">
+                <Check className="w-4 h-4 text-teal-500 shrink-0" strokeWidth={3} />
+                {b}
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
 
       {/* Screenshots */}
@@ -246,7 +258,7 @@ export default function ScreenshotsPage() {
         {galleryFiles.map((file, i) => {
           const screen = t.screenshots[i]
           return (
-            <div key={file} style={{ pageBreakBefore: 'always', breakBefore: 'page' }} className={`flex flex-col-reverse md:flex-row items-center gap-6 md:gap-10 rounded-3xl px-6 md:px-8 py-8 ${colors[i]} ${i % 2 === 1 ? "md:flex-row-reverse" : ""}`}>
+            <div key={file} style={i > 0 ? { pageBreakBefore: 'always', breakBefore: 'page' } : undefined} className={`flex flex-col-reverse md:flex-row items-center gap-6 md:gap-10 rounded-3xl px-6 md:px-8 py-8 ${colors[i]} ${i % 2 === 1 ? "md:flex-row-reverse" : ""}`}>
               <div className="w-[240px] md:w-[320px] shrink-0">
                 <PhoneFrame src={`/captutras_presentacion/${encodeURIComponent(file)}`} alt={screen.label} />
               </div>
@@ -358,7 +370,6 @@ export default function ScreenshotsPage() {
                   <div className="text-2xl mb-3">{b.emoji}</div>
                   <h3 className="font-bold text-foreground text-base mb-2">{b.title}</h3>
                   <p className="text-muted-foreground text-sm leading-relaxed">
-                    {b.bold ? b.text.replace(b.bold, `__BOLD__`) : b.text}
                     {b.bold && b.text.includes(b.bold) ? (
                       <>
                         {b.text.split(b.bold)[0]}
