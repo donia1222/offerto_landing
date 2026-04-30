@@ -1,26 +1,14 @@
-import { Badge } from "@/components/ui/badge"
+"use client"
 
-const screenshots = [
-  {
-    img: "/capturas/IMG_8581.jpeg",
-    label: "Angebots-Übersicht",
-    description: "Alle aktuellen Aktionen aller Händler auf einen Blick",
-  },
-  {
-    img: "/capturas/IMG_8583.jpeg",
-    label: "Suche & Filter",
-    description: "Nach Produkt, Kategorie, Händler oder Rabattstufe filtern",
-  },
-  {
-    img: "/capturas/IMG_8591.PNG",
-    label: "Einkaufsliste",
-    description: "Angebote direkt hinzufügen, Ersparnis in Echtzeit sehen",
-  },
-  {
-    img: "/capturas/IMG_8614.jpeg",
-    label: "Digitale Prospekte",
-    description: "Originale Werbematerialien direkt in der App durchblättern",
-  },
+import { Badge } from "@/components/ui/badge"
+import { useLang } from "@/contexts/LanguageContext"
+import { landingTranslations } from "@/app/landing-translations"
+
+const screenshotImgs = [
+  "/capturas/IMG_8581.jpeg",
+  "/capturas/IMG_8583.jpeg",
+  "/capturas/IMG_8591.PNG",
+  "/capturas/IMG_8614.jpeg",
 ]
 
 function PhoneFrame({ img, alt }: { img: string; alt: string }) {
@@ -39,6 +27,9 @@ function PhoneFrame({ img, alt }: { img: string; alt: string }) {
 }
 
 export function AppScreenshotsSection() {
+  const { lang } = useLang()
+  const t = landingTranslations[lang].screenshots
+
   return (
     <section className="py-20 sm:py-28 bg-card border-y border-border/50 relative overflow-hidden" id="app-preview">
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[500px] bg-primary/4 rounded-full blur-3xl" />
@@ -46,21 +37,21 @@ export function AppScreenshotsSection() {
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-2xl mx-auto mb-16">
           <Badge variant="outline" className="mb-4 bg-primary/5 text-primary border-primary/20 font-semibold">
-            App-Vorschau
+            {t.badge}
           </Badge>
           <h2 className="font-[family-name:var(--font-display)] text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-4 text-balance">
-            Die App{" "}
-            <span className="text-primary">im Überblick.</span>
+            {t.title}{" "}
+            <span className="text-primary">{t.titleHighlight}</span>
           </h2>
           <p className="text-lg text-muted-foreground leading-relaxed">
-            Designed für den täglichen Einsatz im Betrieb — schnell, übersichtlich und vollständig offline verfügbar.
+            {t.subtitle}
           </p>
         </div>
 
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-10">
-          {screenshots.map((screen, index) => (
+          {t.items.map((screen, index) => (
             <div key={index} className="flex flex-col items-center gap-5">
-              <PhoneFrame img={screen.img} alt={screen.label} />
+              <PhoneFrame img={screenshotImgs[index]} alt={screen.label} />
               <div className="text-center space-y-1 px-2">
                 <div className="font-[family-name:var(--font-display)] font-bold text-foreground text-sm sm:text-base">
                   {screen.label}
@@ -72,7 +63,6 @@ export function AppScreenshotsSection() {
             </div>
           ))}
         </div>
-
       </div>
     </section>
   )

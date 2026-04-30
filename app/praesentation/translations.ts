@@ -1,4 +1,4 @@
-export type Lang = "de" | "fr" | "it" | "en"
+export type { Lang } from "@/contexts/LanguageContext"
 
 export const translations = {
   de: {

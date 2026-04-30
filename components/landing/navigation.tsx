@@ -2,14 +2,15 @@
 
 import { useState } from "react"
 import Link from "next/link"
-import { Menu, X } from "lucide-react"
+import { Menu, X, Globe, Check } from "lucide-react"
+import { useLang, type Lang } from "@/contexts/LanguageContext"
+import { landingTranslations } from "@/app/landing-translations"
 
-const navLinks = [
-  { label: "Features",   href: "#features"     },
-  { label: "App",        href: "#app-preview"   },
-  { label: "Händler",    href: "#stores"        },
-  { label: "Kategorien", href: "#kategorien"    },
-  { label: "So geht's",  href: "#how-it-works"  },
+const languages: { code: Lang; flag: string; label: string }[] = [
+  { code: "de", flag: "🇩🇪", label: "Deutsch" },
+  { code: "fr", flag: "🇫🇷", label: "Français" },
+  { code: "it", flag: "🇮🇹", label: "Italiano" },
+  { code: "en", flag: "🇬🇧", label: "English" },
 ]
 
 function scrollTo(href: string) {
@@ -18,12 +19,26 @@ function scrollTo(href: string) {
 }
 
 export function Navigation() {
+  const { lang, setLang } = useLang()
+  const t = landingTranslations[lang].nav
   const [open, setOpen] = useState(false)
+  const [langOpen, setLangOpen] = useState(false)
+
+  const navLinks = [
+    { label: t.features,   href: "#features"    },
+    { label: t.app,        href: "#app-preview"  },
+    { label: t.stores,     href: "#stores"       },
+    { label: t.categories, href: "#kategorien"   },
+    { label: t.howItWorks, href: "#how-it-works" },
+  ]
+
+  const currentLang = languages.find((l) => l.code === lang)!
 
   return (
     <>
       <nav className="fixed top-0 left-0 right-0 z-50 h-16 bg-background/80 backdrop-blur-xl border-b border-border/50">
         <div className="max-w-7xl mx-auto h-full px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3">
             <img src="/icon.png" alt="Offerto PROFI" className="w-11 h-11 object-contain rounded-[8px]" />
@@ -33,7 +48,7 @@ export function Navigation() {
             </div>
           </Link>
 
-          {/* Desktop links */}
+          {/* Desktop nav links */}
           <div className="hidden md:flex items-center gap-1">
             {navLinks.map((link) => (
               <button
@@ -46,24 +61,69 @@ export function Navigation() {
             ))}
           </div>
 
-          {/* Desktop CTA */}
+          {/* Desktop: language button */}
           <button
-            onClick={() => scrollTo("#cta")}
-            className="hidden md:inline-flex rounded-full px-5 py-2 text-sm font-semibold bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg shadow-primary/20 transition-colors cursor-pointer"
+            onClick={() => setLangOpen(true)}
+            className="hidden md:flex items-center gap-1.5 px-3 py-2 rounded-full border border-border/60 hover:bg-muted transition-colors text-sm font-medium text-muted-foreground hover:text-foreground"
           >
-            App holen — Kostenlos
+            <Globe className="w-4 h-4" />
+            <span>{currentLang.label}</span>
           </button>
 
-          {/* Mobile hamburger */}
-          <button
-            onClick={() => setOpen(true)}
-            className="md:hidden p-2.5 rounded-full bg-primary hover:bg-primary/90 transition-colors"
-            aria-label="Menü öffnen"
-          >
-            <Menu className="w-5 h-5 text-white" />
-          </button>
+          {/* Mobile: globe + hamburger */}
+          <div className="md:hidden flex items-center gap-2">
+            <button
+              onClick={() => setLangOpen(true)}
+              className="p-2 rounded-lg hover:bg-secondary transition-colors text-muted-foreground"
+              aria-label="Language"
+            >
+              <Globe className="w-5 h-5" />
+            </button>
+            <button
+              onClick={() => setOpen(true)}
+              className="p-2.5 rounded-full bg-primary hover:bg-primary/90 transition-colors"
+              aria-label="Menü"
+            >
+              <Menu className="w-5 h-5 text-white" />
+            </button>
+          </div>
         </div>
       </nav>
+
+      {/* Language modal — same style as /praesentation */}
+      {langOpen && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm p-4"
+          onClick={() => setLangOpen(false)}
+        >
+          <div
+            className="bg-background rounded-2xl border border-border/50 shadow-2xl p-6 w-full max-w-xs"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex items-center justify-between mb-4">
+              <h3 className="font-bold text-foreground">{t.langModal}</h3>
+              <button onClick={() => setLangOpen(false)} className="p-1 rounded-full hover:bg-muted transition-colors">
+                <X className="w-4 h-4 text-muted-foreground" />
+              </button>
+            </div>
+            <div className="flex flex-col gap-2">
+              {languages.map((l) => (
+                <button
+                  key={l.code}
+                  onClick={() => { setLang(l.code); setLangOpen(false) }}
+                  className={`flex items-center gap-3 px-4 py-3 rounded-xl text-left transition-colors cursor-pointer ${
+                    lang === l.code ? "bg-primary/10 text-primary font-semibold" : "hover:bg-muted text-foreground"
+                  }`}
+                >
+                  <span className="text-xl">{l.flag}</span>
+                  {l.label}
+                  {lang === l.code && <Check className="w-4 h-4 ml-auto" />}
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Mobile overlay */}
       {open && (
@@ -79,22 +139,18 @@ export function Navigation() {
           open ? "translate-x-0" : "translate-x-full"
         }`}
       >
-        {/* Drawer header */}
         <div className="flex items-center justify-between px-5 h-16 border-b border-border/50">
           <div className="flex items-center gap-2.5">
             <img src="/icon.png" alt="Offerto PROFI" className="w-9 h-9 object-contain rounded-[8px]" />
-            <span className="font-[family-name:var(--font-display)] font-bold text-base text-foreground">Offerto <span className="text-primary text-[10px] tracking-widest">PROFI</span></span>
+            <span className="font-[family-name:var(--font-display)] font-bold text-base text-foreground">
+              Offerto <span className="text-primary text-[10px] tracking-widest">PROFI</span>
+            </span>
           </div>
-          <button
-            onClick={() => setOpen(false)}
-            className="p-2 rounded-lg hover:bg-secondary transition-colors"
-            aria-label="Menü schließen"
-          >
+          <button onClick={() => setOpen(false)} className="p-2 rounded-lg hover:bg-secondary transition-colors">
             <X className="w-5 h-5 text-foreground" />
           </button>
         </div>
 
-        {/* Drawer links */}
         <div className="flex flex-col px-4 py-6 gap-1">
           {navLinks.map((link) => (
             <button

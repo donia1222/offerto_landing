@@ -3,6 +3,7 @@ import { Inter, Plus_Jakarta_Sans } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import { CookieBanner } from '@/components/cookie-banner'
 import { DevModal } from '@/components/dev-modal'
+import { LanguageProvider } from '@/contexts/LanguageContext'
 import './globals.css'
 
 const inter = Inter({ 
@@ -79,10 +80,12 @@ export default function RootLayout({
   return (
     <html lang="de" className={`${inter.variable} ${plusJakarta.variable} bg-background`}>
       <body className="font-sans antialiased">
-        {children}
-        <DevModal />
-        <CookieBanner />
-        {process.env.NODE_ENV === 'production' && <Analytics />}
+        <LanguageProvider>
+          {children}
+          <DevModal />
+          <CookieBanner />
+          {process.env.NODE_ENV === 'production' && <Analytics />}
+        </LanguageProvider>
       </body>
     </html>
   )

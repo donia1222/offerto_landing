@@ -1,13 +1,20 @@
-import { Store, Tag, Sparkles, Globe } from "lucide-react"
+"use client"
 
-const stats = [
-  { Icon: Store,    value: "3",           label: "Grosshändler"       },
-  { Icon: Tag,      value: "500+",        label: "Angebote pro Woche" },
-  { Icon: Sparkles, value: "Kostenlos",   label: "Kein Abo"           },
-  { Icon: Globe,    value: "DE/FR/IT/EN", label: "4 Sprachen"         },
-]
+import { Store, Tag, Sparkles, Globe } from "lucide-react"
+import { useLang } from "@/contexts/LanguageContext"
+import { landingTranslations } from "@/app/landing-translations"
 
 export function StatsBar() {
+  const { lang } = useLang()
+  const t = landingTranslations[lang].stats
+
+  const stats = [
+    { Icon: Store,    value: "3",           label: t.storesLabel },
+    { Icon: Tag,      value: "500+",        label: t.offersLabel  },
+    { Icon: Sparkles, value: t.freeValue,   label: t.freeLabel    },
+    { Icon: Globe,    value: "DE/FR/IT/EN", label: t.langLabel    },
+  ]
+
   return (
     <section className="bg-primary/15 border-y border-primary/20 relative overflow-hidden">
       <div className="absolute top-0 left-1/4 w-72 h-24 bg-primary/10 rounded-full blur-3xl animate-pulse" />

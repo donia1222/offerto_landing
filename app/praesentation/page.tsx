@@ -4,7 +4,8 @@ import { useState } from "react"
 import Link from "next/link"
 import { Check, Smartphone, Server, Database, Bell, Package, Layers, Zap, Globe, Mail, X, Printer, Share2 } from "lucide-react"
 import { SectionNav } from "./section-nav"
-import { translations, type Lang } from "./translations"
+import { translations } from "./translations"
+import { useLang, type Lang } from "@/contexts/LanguageContext"
 
 const galleryFiles = [
   "Simulator Screenshot - iPhone 16 - 2026-04-29 at 23.16.31.png",
@@ -79,7 +80,7 @@ const githubIcon = (
 )
 
 export default function ScreenshotsPage() {
-  const [lang, setLang] = useState<Lang>("de")
+  const { lang, setLang } = useLang()
   const [langOpen, setLangOpen] = useState(false)
   const [copied, setCopied] = useState(false)
   const t = translations[lang]
