@@ -3,6 +3,7 @@
 import { Badge } from "@/components/ui/badge"
 import { useLang } from "@/contexts/LanguageContext"
 import { landingTranslations } from "@/app/landing-translations"
+import { useInView, fi } from "@/hooks/use-in-view"
 
 const categoryImgs = [
   "/categorias/frutaverdura.png",
@@ -16,11 +17,12 @@ const categoryImgs = [
 export function CategoriesSection() {
   const { lang } = useLang()
   const t = landingTranslations[lang].categories
+  const { ref, inView } = useInView()
 
   return (
-    <section className="py-20 sm:py-28 bg-secondary/30" id="kategorien">
+    <section ref={ref as any} className="py-20 sm:py-28 bg-secondary/30" id="kategorien">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-2xl mx-auto mb-14">
+        <div className="text-center max-w-2xl mx-auto mb-14" style={fi(inView, 0)}>
           <Badge variant="outline" className="mb-4 bg-primary/5 text-primary border-primary/20 font-semibold">
             {t.badge}
           </Badge>
@@ -38,6 +40,7 @@ export function CategoriesSection() {
             <div
               key={name}
               className="group relative bg-card border border-border/50 rounded-2xl overflow-hidden cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-primary/10 hover:border-primary/25"
+              style={fi(inView, index + 1)}
             >
               <div className="overflow-hidden">
                 <img

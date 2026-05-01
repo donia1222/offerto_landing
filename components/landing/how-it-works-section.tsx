@@ -3,15 +3,17 @@
 import { Badge } from "@/components/ui/badge"
 import { useLang } from "@/contexts/LanguageContext"
 import { landingTranslations } from "@/app/landing-translations"
+import { useInView, fi } from "@/hooks/use-in-view"
 
 export function HowItWorksSection() {
   const { lang } = useLang()
   const t = landingTranslations[lang].howItWorks
+  const { ref, inView } = useInView()
 
   return (
-    <section className="py-20 sm:py-28" id="how-it-works">
+    <section ref={ref as any} className="py-20 sm:py-28" id="how-it-works">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-2xl mx-auto mb-16">
+        <div className="text-center max-w-2xl mx-auto mb-16" style={fi(inView, 0)}>
           <Badge variant="outline" className="mb-4 bg-primary/5 text-primary border-primary/20 font-semibold">
             {t.badge}
           </Badge>
@@ -26,7 +28,7 @@ export function HowItWorksSection() {
 
         <div className="grid sm:grid-cols-3 gap-8">
           {t.steps.map((step, index) => (
-            <div key={index} className="relative group">
+            <div key={index} className="relative group" style={fi(inView, index + 1)}>
               {index < t.steps.length - 1 && (
                 <div className="hidden lg:block absolute top-8 left-[calc(50%+32px)] w-[calc(100%-32px)] h-px bg-gradient-to-r from-primary/30 to-transparent" />
               )}

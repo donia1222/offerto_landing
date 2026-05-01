@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/badge"
 import { ChevronDown } from "lucide-react"
 import { useLang } from "@/contexts/LanguageContext"
 import { landingTranslations } from "@/app/landing-translations"
+import { useInView, fi } from "@/hooks/use-in-view"
 
 function FAQItem({ question, answer }: { question: string; answer: string }) {
   const [open, setOpen] = useState(false)
@@ -34,11 +35,12 @@ function FAQItem({ question, answer }: { question: string; answer: string }) {
 export function FAQSection() {
   const { lang } = useLang()
   const t = landingTranslations[lang].faq
+  const { ref, inView } = useInView()
 
   return (
-    <section className="py-20 sm:py-28 bg-secondary/30" id="faq">
+    <section ref={ref as any} className="py-20 sm:py-28 bg-secondary/30" id="faq">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-14">
+        <div className="text-center mb-14" style={fi(inView, 0)}>
           <Badge variant="outline" className="mb-4 bg-primary/5 text-primary border-primary/20 font-semibold">
             {t.badge}
           </Badge>
@@ -53,7 +55,9 @@ export function FAQSection() {
 
         <div className="space-y-3">
           {t.items.map((faq, index) => (
-            <FAQItem key={index} question={faq.question} answer={faq.answer} />
+            <div key={index} style={fi(inView, index + 1)}>
+              <FAQItem question={faq.question} answer={faq.answer} />
+            </div>
           ))}
         </div>
       </div>

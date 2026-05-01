@@ -26,7 +26,8 @@ export function HeroSection() {
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center min-h-[calc(100vh-120px)]">
 
-          <div className="bg-white/70 backdrop-blur-lg border border-white/80 rounded-3xl p-8 sm:p-10 space-y-8 shadow-2xl shadow-black/10">
+          <div className="bg-white/70 backdrop-blur-lg border border-white/80 rounded-3xl p-8 sm:p-10 space-y-8 shadow-2xl shadow-black/10"
+            style={{ animation: "fadeUp 0.7s ease both", animationDelay: "0.1s" }}>
             <div className="space-y-5">
               <h1 className="font-[family-name:var(--font-display)] text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground leading-[1.1] tracking-tight text-balance">
                 {t.title1}{" "}
@@ -63,10 +64,11 @@ export function HeroSection() {
             <div className="relative w-full max-w-md space-y-4">
               <div className="absolute inset-0 bg-primary/5 rounded-3xl blur-3xl scale-105 -z-10" />
 
-              {partners.map((partner) => (
+              {partners.map((partner, i) => (
                 <div
                   key={partner.name}
                   className="bg-white/90 backdrop-blur-sm border border-border/50 rounded-2xl px-6 py-5 flex items-center justify-between shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-200"
+                  style={{ animation: "fadeUp 0.7s ease both", animationDelay: `${0.4 + i * 0.15}s` }}
                 >
                   <img src={partner.logo} alt={partner.name} className={`${partner.logoH} w-auto object-contain`} />
                   <div className="flex items-center gap-2 bg-primary/8 border border-primary/15 rounded-full px-3 py-1.5">
@@ -76,7 +78,8 @@ export function HeroSection() {
                 </div>
               ))}
 
-              <div className="bg-primary rounded-2xl px-6 py-5 flex items-center justify-between shadow-lg shadow-primary/25">
+              <div className="bg-primary rounded-2xl px-6 py-5 flex items-center justify-between shadow-lg shadow-primary/25"
+                style={{ animation: "fadeUp 0.7s ease both", animationDelay: "0.85s" }}>
                 <div>
                   <div className="text-primary-foreground font-[family-name:var(--font-display)] font-bold text-lg">
                     {t.totalOffers}

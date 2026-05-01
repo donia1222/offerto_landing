@@ -3,6 +3,7 @@
 import { Badge } from "@/components/ui/badge"
 import { useLang } from "@/contexts/LanguageContext"
 import { landingTranslations } from "@/app/landing-translations"
+import { useInView, fi } from "@/hooks/use-in-view"
 
 const screenshotImgs = [
   "/capturas/IMG_8581.jpeg",
@@ -29,13 +30,14 @@ function PhoneFrame({ img, alt }: { img: string; alt: string }) {
 export function AppScreenshotsSection() {
   const { lang } = useLang()
   const t = landingTranslations[lang].screenshots
+  const { ref, inView } = useInView()
 
   return (
-    <section className="py-20 sm:py-28 bg-card border-y border-border/50 relative overflow-hidden" id="app-preview">
+    <section ref={ref as any} className="py-20 sm:py-28 bg-card border-y border-border/50 relative overflow-hidden" id="app-preview">
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[500px] bg-primary/4 rounded-full blur-3xl" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-2xl mx-auto mb-16">
+        <div className="text-center max-w-2xl mx-auto mb-16" style={fi(inView, 0)}>
           <Badge variant="outline" className="mb-4 bg-primary/5 text-primary border-primary/20 font-semibold">
             {t.badge}
           </Badge>
@@ -50,7 +52,7 @@ export function AppScreenshotsSection() {
 
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-10">
           {t.items.map((screen, index) => (
-            <div key={index} className="flex flex-col items-center gap-5">
+            <div key={index} className="flex flex-col items-center gap-5" style={fi(inView, index + 1)}>
               <PhoneFrame img={screenshotImgs[index]} alt={screen.label} />
               <div className="text-center space-y-1 px-2">
                 <div className="font-[family-name:var(--font-display)] font-bold text-foreground text-sm sm:text-base">

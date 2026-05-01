@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/badge"
 import { ExternalLink } from "lucide-react"
 import { useLang } from "@/contexts/LanguageContext"
 import { landingTranslations } from "@/app/landing-translations"
+import { useInView, fi } from "@/hooks/use-in-view"
 
 const storesMeta = [
   { name: "Aligro",       logo: "/logos-shops/aligrotrasnparehte.png",    offers: "200+", website: "www.aligro.ch",       url: "https://www.aligro.ch"       },
@@ -15,11 +16,12 @@ const storesMeta = [
 export function StoresSection() {
   const { lang } = useLang()
   const t = landingTranslations[lang].stores
+  const { ref, inView } = useInView()
 
   return (
-    <section className="py-20 sm:py-28 bg-card border-y border-border/50" id="stores">
+    <section ref={ref as any} className="py-20 sm:py-28 bg-card border-y border-border/50" id="stores">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-2xl mx-auto mb-16">
+        <div className="text-center max-w-2xl mx-auto mb-16" style={fi(inView, 0)}>
           <div className="inline-block bg-white/80 backdrop-blur-md border border-border/60 rounded-3xl px-10 py-8 shadow-xl shadow-black/5">
             <Badge variant="outline" className="mb-4 bg-primary/5 text-primary border-primary/20 font-semibold">
               {t.badge}
@@ -41,6 +43,7 @@ export function StoresSection() {
               <Card
                 key={store.name}
                 className="group border-border/50 overflow-hidden hover:shadow-xl hover:shadow-primary/5 transition-all duration-300 hover:-translate-y-1"
+                style={fi(inView, index + 1)}
               >
                 <CardContent className="p-0">
                   <div className="bg-white flex items-center justify-center h-32 px-8 border-b border-border/40">

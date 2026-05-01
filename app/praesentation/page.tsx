@@ -6,6 +6,7 @@ import { Check, Smartphone, Server, Database, Bell, Package, Layers, Zap, Globe,
 import { SectionNav } from "./section-nav"
 import { translations } from "./translations"
 import { useLang, type Lang } from "@/contexts/LanguageContext"
+import { useInView, fi } from "@/hooks/use-in-view"
 
 const galleryFiles = [
   "Simulator Screenshot - iPhone 16 - 2026-04-29 at 23.16.31.png",
@@ -58,6 +59,11 @@ const languages: { code: Lang; flag: string; label: string }[] = [
   { code: "en", flag: "🇬🇧", label: "English" },
 ]
 
+function fu(i = 0) {
+  const d = `${(i * 0.15).toFixed(2)}s`
+  return { animation: `fadeUp 0.65s ease both`, animationDelay: d }
+}
+
 function PhoneFrame({ src, alt }: { src: string; alt: string }) {
   return (
     <div className="relative">
@@ -84,6 +90,10 @@ export default function ScreenshotsPage() {
   const [langOpen, setLangOpen] = useState(false)
   const [copied, setCopied] = useState(false)
   const t = translations[lang]
+
+  const { ref: screenshotsRef, inView: screenshotsInView } = useInView()
+  const { ref: techRef, inView: techInView } = useInView()
+  const { ref: bizRef, inView: bizInView } = useInView()
 
   const handleShare = async () => {
     const url = window.location.href
@@ -130,7 +140,6 @@ export default function ScreenshotsPage() {
       {/* Header */}
       <div className="no-print sticky top-0 z-20 bg-background/95 backdrop-blur-md border-b border-border/40">
         <div className="w-full px-4 py-3 relative flex items-center justify-between">
-          {/* Izquierda: logo + título */}
           <div className="flex items-center gap-2.5 shrink-0">
             <img src="/icon.png" alt="Offerto PROFI" className="w-9 h-9 rounded-[8px] shadow-sm" />
             <h2 className="font-bold text-base leading-tight whitespace-nowrap">
@@ -139,7 +148,6 @@ export default function ScreenshotsPage() {
               <span className="text-foreground hidden sm:inline"> — {t.headerTitle}</span>
             </h2>
           </div>
-          {/* Centro: nav links — absolutamente centrado, solo desktop */}
           <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 items-center gap-1">
             {[
               { label: t.navScreenshots, href: "#screenshots" },
@@ -169,7 +177,6 @@ export default function ScreenshotsPage() {
               {t.navPdf}
             </button>
           </div>
-          {/* Derecha: globo idioma */}
           <button
             onClick={() => setLangOpen(true)}
             className="shrink-0 flex items-center gap-1.5 px-3 py-2 rounded-full border border-border/60 hover:bg-muted transition-colors text-sm font-medium text-muted-foreground hover:text-foreground"
@@ -212,21 +219,20 @@ export default function ScreenshotsPage() {
         <SectionNav lang={lang} t={{ navScreenshots: t.navScreenshots, navTech: t.navTech, navBiz: t.navBiz }} />
       </div>
 
-
       {/* Hero */}
       <div className="bg-gradient-to-b from-primary/10 to-background border-b border-border/40 px-6 py-16 md:py-24 text-center">
-        <h1 className="font-bold text-4xl md:text-6xl text-foreground leading-tight tracking-tight mb-6">
+        <h1 className="font-bold text-4xl md:text-6xl text-foreground leading-tight tracking-tight mb-6" style={fu(0)}>
           {t.heroTitle1}<br />
           <span className="text-primary">{t.heroTitle2}</span>
         </h1>
-        <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed mb-10">
+        <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed mb-10" style={fu(1)}>
           {t.heroSub}
         </p>
-        <div className="flex items-center justify-center gap-4 mb-8">
+        <div className="flex items-center justify-center gap-4 mb-8" style={fu(2)}>
           <img src="/shops/apple.png" alt="App Store" className="h-12 object-contain" />
           <img src="/shops/google.png" alt="Google Play" className="h-12 object-contain" />
         </div>
-        <div className="flex items-center justify-center gap-2 flex-wrap">
+        <div className="flex items-center justify-center gap-2 flex-wrap" style={fu(3)}>
           {t.chips.map((chip) => (
             <span key={chip} className="inline-flex items-center gap-1.5 text-xs font-medium px-3 py-1.5 rounded-full bg-primary/10 text-primary border border-primary/20 whitespace-nowrap">
               <Check className="w-3 h-3 text-red-500 shrink-0" strokeWidth={3} />
@@ -234,9 +240,7 @@ export default function ScreenshotsPage() {
             </span>
           ))}
         </div>
-
-        {/* Beneficios para comerciantes */}
-        <div className="mt-10 max-w-xl mx-auto rounded-2xl border border-teal-200 dark:border-teal-800/50 bg-teal-50/60 dark:bg-teal-950/20 px-6 py-5 text-left">
+        <div className="mt-10 max-w-xl mx-auto rounded-2xl border border-teal-200 dark:border-teal-800/50 bg-teal-50/60 dark:bg-teal-950/20 px-6 py-5 text-left" style={fu(4)}>
           <p className="text-sm font-bold text-teal-700 dark:text-teal-300 uppercase tracking-widest mb-3 text-center">{t.benefitsTitle}</p>
           <div className="flex flex-col gap-2">
             {t.benefits.map((b) => (
@@ -250,7 +254,7 @@ export default function ScreenshotsPage() {
       </div>
 
       {/* Screenshots */}
-      <div id="screenshots" className="max-w-4xl mx-auto w-full px-6 pt-14 pb-2 text-center">
+      <div ref={screenshotsRef as any} id="screenshots" className="max-w-4xl mx-auto w-full px-6 pt-14 pb-2 text-center" style={fi(screenshotsInView, 0)}>
         <h2 className="font-bold text-3xl md:text-4xl text-foreground">{t.impressionenTitle}</h2>
         <p className="text-muted-foreground mt-2 text-base">{t.impressionenSub}</p>
       </div>
@@ -259,7 +263,11 @@ export default function ScreenshotsPage() {
         {galleryFiles.map((file, i) => {
           const screen = t.screenshots[i]
           return (
-            <div key={file} style={i > 0 ? { pageBreakBefore: 'always', breakBefore: 'page' } : undefined} className={`flex flex-col-reverse md:flex-row items-center gap-6 md:gap-10 rounded-3xl px-6 md:px-8 py-8 ${colors[i]} ${i % 2 === 1 ? "md:flex-row-reverse" : ""}`}>
+            <div
+              key={file}
+              style={{ ...(i > 0 ? { pageBreakBefore: 'always', breakBefore: 'page' } : {}), ...fi(screenshotsInView, i + 1) }}
+              className={`flex flex-col-reverse md:flex-row items-center gap-6 md:gap-10 rounded-3xl px-6 md:px-8 py-8 ${colors[i]} ${i % 2 === 1 ? "md:flex-row-reverse" : ""}`}
+            >
               <div className="w-[240px] md:w-[320px] shrink-0">
                 <PhoneFrame src={`/captutras_presentacion/${encodeURIComponent(file)}`} alt={screen.label} />
               </div>
@@ -276,15 +284,15 @@ export default function ScreenshotsPage() {
       </div>
 
       {/* Tech Stack */}
-      <div id="technologie" className="border-t border-border/40 bg-card/50 px-6 py-16">
+      <div ref={techRef as any} id="technologie" className="border-t border-border/40 bg-card/50 px-6 py-16">
         <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-10">
+          <div className="text-center mb-10" style={fi(techInView, 0)}>
             <h2 className="font-bold text-2xl md:text-3xl text-foreground mb-2">{t.techTitle}</h2>
             <p className="text-muted-foreground text-sm md:text-base">{t.techSub}</p>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {t.techItems.map((item, i) => (
-              <div key={item.title} className={`flex flex-col gap-3 p-5 rounded-2xl border ${techColors[i].color}`}>
+              <div key={item.title} className={`flex flex-col gap-3 p-5 rounded-2xl border ${techColors[i].color}`} style={fi(techInView, i + 1)}>
                 <div className={techColors[i].icon_color}>{techIcons[i]}</div>
                 <div>
                   <div className="font-bold text-foreground text-base">{item.title}</div>
@@ -294,10 +302,10 @@ export default function ScreenshotsPage() {
             ))}
           </div>
 
-          <p className="text-center text-sm font-semibold text-muted-foreground uppercase tracking-widest mt-8 mb-4">{t.swissLabel}</p>
+          <p className="text-center text-sm font-semibold text-muted-foreground uppercase tracking-widest mt-8 mb-4" style={fi(techInView, 9)}>{t.swissLabel}</p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            {t.swiss.map((s) => (
-              <div key={s.title} className="flex items-center gap-3 px-5 py-4 rounded-2xl border border-border/50 bg-background">
+            {t.swiss.map((s, i) => (
+              <div key={s.title} className="flex items-center gap-3 px-5 py-4 rounded-2xl border border-border/50 bg-background" style={fi(techInView, 10 + i)}>
                 <span className="text-xl">{s.emoji}</span>
                 <div>
                   <div className="font-semibold text-foreground text-base">{s.title}</div>
@@ -307,23 +315,23 @@ export default function ScreenshotsPage() {
             ))}
           </div>
 
-          <p className="text-center text-sm font-semibold text-muted-foreground uppercase tracking-widest mt-8 mb-4">{t.availableLabel}</p>
+          <p className="text-center text-sm font-semibold text-muted-foreground uppercase tracking-widest mt-8 mb-4" style={fi(techInView, 13)}>{t.availableLabel}</p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <div className="flex items-center gap-3 px-5 py-4 rounded-2xl border border-border/50 bg-background">
+            <div className="flex items-center gap-3 px-5 py-4 rounded-2xl border border-border/50 bg-background" style={fi(techInView, 14)}>
               <img src="/shops/apple.png" alt="App Store" className="h-8 object-contain" />
               <div>
                 <div className="font-semibold text-foreground text-base">{t.available[0].title}</div>
                 <div className="text-muted-foreground text-sm">{t.available[0].sub}</div>
               </div>
             </div>
-            <div className="flex items-center gap-3 px-5 py-4 rounded-2xl border border-border/50 bg-background">
+            <div className="flex items-center gap-3 px-5 py-4 rounded-2xl border border-border/50 bg-background" style={fi(techInView, 15)}>
               <img src="/shops/google.png" alt="Google Play" className="h-8 object-contain" />
               <div>
                 <div className="font-semibold text-foreground text-base">{t.available[1].title}</div>
                 <div className="text-muted-foreground text-sm">{t.available[1].sub}</div>
               </div>
             </div>
-            <div className="flex items-center gap-3 px-5 py-4 rounded-2xl border border-border/50 bg-background">
+            <div className="flex items-center gap-3 px-5 py-4 rounded-2xl border border-border/50 bg-background" style={fi(techInView, 16)}>
               <span className="text-2xl">🌐</span>
               <div>
                 <div className="font-semibold text-foreground text-base">{t.available[2].title}</div>
@@ -332,7 +340,7 @@ export default function ScreenshotsPage() {
             </div>
           </div>
 
-          <div className="mt-8 rounded-2xl border border-border/50 bg-background px-6 py-6 flex flex-col gap-4">
+          <div className="mt-8 rounded-2xl border border-border/50 bg-background px-6 py-6 flex flex-col gap-4" style={fi(techInView, 17)}>
             <div>
               <div className="font-bold text-foreground text-lg mb-1">{t.openSourceTitle}</div>
               <p className="text-muted-foreground text-sm leading-relaxed">{t.openSourceText}</p>
@@ -350,9 +358,9 @@ export default function ScreenshotsPage() {
       </div>
 
       {/* Business Model */}
-      <div id="geschaeftsmodell" className="border-t border-border/40 px-6 py-16">
+      <div ref={bizRef as any} id="geschaeftsmodell" className="border-t border-border/40 px-6 py-16">
         <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-10">
+          <div className="text-center mb-10" style={fi(bizInView, 0)}>
             <h2 className="font-bold text-2xl md:text-3xl text-foreground mb-2">{t.bizTitle}</h2>
             <p className="text-muted-foreground text-sm md:text-base">{t.bizSub}</p>
           </div>
@@ -367,7 +375,11 @@ export default function ScreenshotsPage() {
                 "border-cyan-100 dark:border-cyan-900/50 bg-cyan-50/60 dark:bg-cyan-950/20",
               ]
               return (
-                <div key={i} style={i === 4 ? { pageBreakBefore: 'always', breakBefore: 'page' } : undefined} className={`rounded-2xl border p-6 ${blockColors[i]}`}>
+                <div
+                  key={i}
+                  style={{ ...(i === 4 ? { pageBreakBefore: 'always', breakBefore: 'page' } : {}), ...fi(bizInView, i + 1) }}
+                  className={`rounded-2xl border p-6 ${blockColors[i]}`}
+                >
                   <div className="text-2xl mb-3">{b.emoji}</div>
                   <h3 className="font-bold text-foreground text-base mb-2">{b.title}</h3>
                   <p className="text-muted-foreground text-sm leading-relaxed">
@@ -390,7 +402,7 @@ export default function ScreenshotsPage() {
               )
             })}
 
-            <div className="md:col-span-2 rounded-2xl border border-teal-100 dark:border-teal-900/50 bg-teal-50/60 dark:bg-teal-950/20 p-6">
+            <div className="md:col-span-2 rounded-2xl border border-teal-100 dark:border-teal-900/50 bg-teal-50/60 dark:bg-teal-950/20 p-6" style={fi(bizInView, 7)}>
               <div className="text-2xl mb-3">🏆</div>
               <h3 className="font-bold text-foreground text-base mb-3">{t.benefitsTitle}</h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
@@ -403,14 +415,13 @@ export default function ScreenshotsPage() {
               </div>
             </div>
 
-            <div className="md:col-span-2 rounded-2xl border border-border/50 bg-card p-6 text-center">
+            <div className="md:col-span-2 rounded-2xl border border-border/50 bg-card p-6 text-center" style={fi(bizInView, 8)}>
               <div className="text-2xl mb-3">🎯</div>
               <h3 className="font-bold text-foreground text-base mb-2">{t.fazitTitle}</h3>
               <p className="text-muted-foreground text-sm leading-relaxed max-w-xl mx-auto">{t.fazitText}</p>
             </div>
           </div>
 
-          {/* Botones compartir / PDF / volver */}
           <div className="no-print mt-10 flex flex-col sm:flex-row items-center justify-center gap-3">
             <button
               onClick={handleShare}

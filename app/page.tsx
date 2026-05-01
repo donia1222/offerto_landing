@@ -10,7 +10,6 @@ import { HowItWorksSection } from "@/components/landing/how-it-works-section"
 import { CTASection } from "@/components/landing/cta-section"
 import { FAQSection } from "@/components/landing/faq-section"
 import { Footer } from "@/components/landing/footer"
-
 export default function LandingPage() {
   return (
     <main className="min-h-screen">
