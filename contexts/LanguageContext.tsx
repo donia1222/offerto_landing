@@ -2,7 +2,7 @@
 
 import { createContext, useContext, useState, useEffect, type ReactNode } from "react"
 
-export type Lang = "de" | "fr" | "it" | "en"
+export type Lang = "de" | "fr" | "it" | "en" | "es"
 
 type LanguageContextType = {
   lang: Lang
@@ -19,12 +19,12 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     const saved = localStorage.getItem("offerto-lang") as Lang | null
-    if (saved && (["de", "fr", "it", "en"] as Lang[]).includes(saved)) {
+    if (saved && (["de", "fr", "it", "en", "es"] as Lang[]).includes(saved)) {
       setLangState(saved)
       return
     }
     const browser = navigator.language.slice(0, 2).toLowerCase()
-    const detected = (["de", "fr", "it", "en"] as Lang[]).find((l) => l === browser)
+    const detected = (["de", "fr", "it", "en", "es"] as Lang[]).find((l) => l === browser)
     if (detected) setLangState(detected)
   }, [])
 

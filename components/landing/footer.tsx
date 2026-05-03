@@ -11,6 +11,7 @@ const languages: { code: Lang; flag: string; label: string }[] = [
   { code: "fr", flag: "🇫🇷", label: "Français" },
   { code: "it", flag: "🇮🇹", label: "Italiano" },
   { code: "en", flag: "🇬🇧", label: "English" },
+  { code: "es", flag: "🇪🇸", label: "Español" },
 ]
 
 export function Footer() {
