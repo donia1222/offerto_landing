@@ -95,6 +95,7 @@ export default function ScreenshotsPage() {
   const { ref: screenshotsRef, inView: screenshotsInView } = useInView()
   const { ref: techRef, inView: techInView } = useInView()
   const { ref: bizRef, inView: bizInView } = useInView()
+  const { ref: aboutRef, inView: aboutInView } = useInView()
 
   const handleShare = async () => {
     const url = window.location.href
@@ -438,6 +439,40 @@ export default function ScreenshotsPage() {
               <Printer className="w-4 h-4" />
               Als PDF drucken
             </button>
+          </div>
+        </div>
+      </div>
+
+      {/* About / Who is behind */}
+      <div ref={aboutRef as any} className="border-t border-border/40 bg-card/50 px-6 py-16">
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-10" style={fi(aboutInView, 0)}>
+            <h2 className="font-bold text-2xl md:text-3xl text-foreground mb-2">{t.aboutTitle}</h2>
+            <p className="text-muted-foreground text-sm md:text-base">{t.aboutSub}</p>
+          </div>
+          <div className="rounded-3xl border border-indigo-100 dark:border-indigo-900/50 bg-indigo-50/60 dark:bg-indigo-950/20 p-8 md:p-10" style={fi(aboutInView, 1)}>
+            <div className="flex flex-col md:flex-row gap-8 md:gap-12 items-start">
+              {/* Identity */}
+              <div className="shrink-0 flex flex-col items-center gap-2 mx-auto md:mx-0">
+                <img src="/logolweb.png" alt="lweb.ch" className="h-20 w-auto object-contain mb-2 rounded-[8px] border-2 border-indigo-200 dark:border-indigo-700 p-1" />
+                <div className="font-bold text-foreground text-lg">{t.aboutName}</div>
+                <div className="text-indigo-600 dark:text-indigo-400 text-sm font-medium">{t.aboutRole}</div>
+                <a
+                  href="https://www.lweb.ch"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-2 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-indigo-600 hover:bg-indigo-700 transition-colors text-white text-xs font-semibold"
+                >
+                  <Globe className="w-3.5 h-3.5" />
+                  lweb.ch
+                </a>
+              </div>
+              {/* Text */}
+              <div className="flex-1 flex flex-col gap-4 text-sm leading-relaxed text-muted-foreground">
+                <p>{t.aboutText1}</p>
+                <p>{t.aboutText2}</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
